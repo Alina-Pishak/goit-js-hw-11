@@ -1,0 +1,54 @@
+.gallery {
+    margin-top: 50px;
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.photo-card {
+    height: 240px;
+    width: 350px;
+    border-radius: 1em;
+    box-shadow: 0 10px 20px #dbdbdb;
+}
+
+.info {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    padding: 0 1.5em;
+    color: black;
+}
+
+input {
+    width: 50%;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: .2em solid #F082AC;
+    border-radius: .2em .2em 0 0;
+    padding: .4em;
+    color: #F082AC;
+}
+
+input::placeholder {
+    color: #F082AC;
+}
+
+button {
+    border-radius: 8px;
+    border-style: none;
+    color: #F082AC;
+    cursor: pointer;
+    height: 40px;
+    padding: 10px 16px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
