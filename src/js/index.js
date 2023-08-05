@@ -63,7 +63,6 @@ function handleIntersect(evt) {
  
 async function searchMorePhotos() {
   try {
-    console.log('jl')
     const result = pixabayAPI.page * 40;
     const { data } = await pixabayAPI.fetchPhotos();
     gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits)); 
