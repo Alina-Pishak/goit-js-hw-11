@@ -9,7 +9,6 @@ const searchForm = document.querySelector('.search-form');
 const loadMoreBtn = document.querySelector('.load-more');
 const pixabayAPI = new PixabayAPI();
 const target = document.querySelector('.js-guard');
-// let page = 1;
 const simplelightbox = new SimpleLightbox('.gallery a', {});
 
 const options = {
@@ -24,17 +23,17 @@ searchForm.addEventListener('submit', handlerSearchForm);
 
 function handlerSearchForm(evt) {
   evt.preventDefault();
+  target.hidden = true;
   // loadMoreBtn.hidden = true;
   gallery.innerHTML = '';
   const searchQuery = evt.currentTarget.elements['searchQuery'].value.trim();
   pixabayAPI.q = searchQuery;
+  pixabayAPI.page = 1;
   searchPhotos();
-  
 }
 
 async function searchPhotos() {
   try {
-    pixabayAPI.page = 1;
     const { data } = await pixabayAPI.fetchPhotos();
     if (data.hits.length < 1) {
       Notify.failure('Sorry, there are no images matching your search query. Please try again.');
@@ -43,7 +42,7 @@ async function searchPhotos() {
     }
     Notify.success(`Hooray! We found ${data.totalHits} images.`);
     gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits));
-
+    target.hidden = false;
     observer.observe(target);
     simplelightbox.refresh();
     // loadMoreBtn.hidden = false;
@@ -67,6 +66,7 @@ async function searchMorePhotos() {
     const { data } = await pixabayAPI.fetchPhotos();
     gallery.insertAdjacentHTML('beforeend', createMarkup(data.hits)); 
     if (result >= data.totalHits) {
+      observer.unobserve(target);
       Notify.failure("We're sorry, but you've reached the end of search results.");
       // loadMoreBtn.hidden = true;
       return;
