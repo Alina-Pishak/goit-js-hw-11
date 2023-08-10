@@ -2,7 +2,7 @@ import { PixabayAPI } from "./pixabay-api";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-
+import { createMarkup } from "./markup";
 
 const gallery = document.querySelector('.gallery');
 const searchForm = document.querySelector('.search-form');
@@ -76,33 +76,6 @@ async function searchMorePhotos() {
   } catch (error) {
     
   }
-
-}
-
-function createMarkup(arr) {
-    const markup = arr.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => 
-        `<a href="${largeImageURL}">
-        <div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" width='350' height='200'/>
-  <div class="info">
-    <p class="info-item">
-      <b>Likes: ${likes}</b>
-    </p>
-    <p class="info-item">
-      <b>Views: ${views}</b>
-    </p>
-    <p class="info-item">
-      <b>Comments: ${comments}</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads: ${downloads}</b>
-    </p>
-  </div>
-        </div>
-        </a>
-        `
-    );
-    return markup.join('');
 
 }
 
